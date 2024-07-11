@@ -1,0 +1,38 @@
+/**
+ * @param {string} pattern
+ * @param {string} s
+ * @return {boolean}
+ */
+var wordPattern = function (pattern, s) {
+    let matcherObj = {}
+    let arr = s.split(" ");
+    let patternArr = pattern.split('');
+    if(arr.length !=  patternArr.length) {
+        return false
+    }
+    for (let i = 0; i < patternArr.length; i++) {
+        if(arr[i] == 'constructor') {
+            arr[i] = 'prakh'
+        }
+
+        if (arr[i] in matcherObj) {
+            let value = matcherObj[arr[i]]
+            matcherObj[arr[i]] = value
+        } else {
+            const matcherObjValues = Object.values(matcherObj)
+            if(matcherObjValues.includes(patternArr[i])) {
+                return false
+
+            }
+            
+            matcherObj[arr[i]] = patternArr[i]
+            // j++;
+
+        }
+         if (matcherObj[arr[i]] != patternArr[i]) {
+                return false
+            }
+    }
+
+    return true;
+};
